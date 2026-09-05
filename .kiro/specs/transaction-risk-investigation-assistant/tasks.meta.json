@@ -1,0 +1,398 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1. Create project structure and initial files": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588230785
+      },
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588251615
+      }
+    ],
+    "2. Verify basic Flask application starts": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588231787
+      }
+    ],
+    "3.1 Create TransactionRecord dataclass in src/models/transaction.py": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588231931
+      },
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588252362
+      }
+    ],
+    "3.2 Create CustomerProfile and CustomerBaseline dataclasses in src/models/customer.py": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588232052
+      },
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588253367
+      }
+    ],
+    "4.1 Create SyntheticDataGenerator class in src/data_generator.py": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588232147
+      }
+    ],
+    "4.2 Generate and save synthetic data to data/profiles.json": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588232260
+      }
+    ],
+    "5. Checkpoint - Verify synthetic data": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588232382
+      }
+    ],
+    "6.1 Create FraudDetector abstract base class in src/detectors/base.py": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588232473
+      }
+    ],
+    "6.2 Create FraudPattern and DetectionResult dataclasses in src/models/detection.py": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588232579
+      }
+    ],
+    "6.3 Create RuleEngine class in src/rule_engine.py": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588232721
+      }
+    ],
+    "7.1 Implement LargeTransferDetector in src/detectors/large_transfer.py": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588232818
+      }
+    ],
+    "7.3 Implement BurstPaymentDetector in src/detectors/burst_payment.py": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588232896
+      }
+    ],
+    "7.5 Implement OddHoursDetector in src/detectors/odd_hours.py": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588232981
+      }
+    ],
+    "7.7 Implement PatternBreakDetector in src/detectors/pattern_break.py": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588233080
+      }
+    ],
+    "8.1 Implement StructuringDetector in src/detectors/structuring.py": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588233193
+      }
+    ],
+    "8.3 Implement VelocityDetector in src/detectors/velocity.py": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588233271
+      }
+    ],
+    "9. Integrate detectors into RuleEngine": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588233349
+      }
+    ],
+    "10. Checkpoint - Rule engine verification": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588233434
+      }
+    ],
+    "11.1 Implement GET /api/profiles endpoint": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588233516
+      }
+    ],
+    "11.2 Implement POST /api/analyze endpoint": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588233598
+      }
+    ],
+    "11.3 Implement request validation and error handling": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588233676
+      }
+    ],
+    "11.4 Implement CSV parsing function": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588233777
+      }
+    ],
+    "11.5 Enable CORS for frontend communication": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588233844
+      }
+    ],
+    "13. Checkpoint - API verification": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588233908
+      }
+    ],
+    "14.1 Create GeminiIntegration class in src/gemini_integration.py": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588233965
+      }
+    ],
+    "14.2 Implement narrative generation with timeout": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588234029
+      }
+    ],
+    "14.3 Implement synchronous wrapper for Flask": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588234085
+      }
+    ],
+    "14.4 Implement fallback handling": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588234141
+      }
+    ],
+    "15. Integrate Gemini into API endpoint": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588234211
+      }
+    ],
+    "17. Checkpoint - Gemini integration verification": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588234286
+      }
+    ],
+    "18.1 Initialize React app with Vite": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588234360
+      }
+    ],
+    "18.2 Create API service client in src/services/api.js": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588234433
+      }
+    ],
+    "19.1 Create App.jsx main component": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588234509
+      }
+    ],
+    "19.2 Create ProfileSelector component": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588234585
+      }
+    ],
+    "19.3 Create FileUpload component": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588234658
+      }
+    ],
+    "19.4 Create LoadingSpinner component": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588234737
+      }
+    ],
+    "19.5 Create ErrorDisplay component": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588234811
+      }
+    ],
+    "20.1 Create PatternList component": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588234898
+      }
+    ],
+    "20.2 Create NarrativeDisplay component": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588234976
+      }
+    ],
+    "20.3 Create TransactionChart component": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588235051
+      }
+    ],
+    "20.4 Create risk score header display": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588235125
+      }
+    ],
+    "22. Checkpoint - Frontend verification": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588235199
+      }
+    ],
+    "23.1 Create production build": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588235288
+      }
+    ],
+    "23.2 Configure Flask to serve frontend static files": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588235354
+      }
+    ],
+    "23.3 Commit production build files to git": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588235419
+      }
+    ],
+    "24. Checkpoint - Production build verification": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588235481
+      }
+    ],
+    "25.1 Clone repository to clean directory": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588235541
+      }
+    ],
+    "25.2 Run single-command startup": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588235646
+      }
+    ],
+    "25.3 Test complete workflow": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588235717
+      }
+    ],
+    "25.4 Measure performance": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588235795
+      }
+    ],
+    "27.1 Complete README.md": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588235908
+      }
+    ],
+    "27.2 Review git commit history": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588235990
+      }
+    ],
+    "27.3 Create final presentation checklist": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588236071
+      }
+    ],
+    "28. Final checkpoint - System ready for presentation": [
+      {
+        "executionId": "cff75d51-6830-40d1-aae9-e7b67e156757",
+        "chatSessionId": "sess_79c25e53-1270-4bed-9868-cbf484de79e5",
+        "timestamp": 1788588236166
+      }
+    ]
+  }
+}
