@@ -213,23 +213,37 @@ class GeminiIntegration:
 **Instructions:**
 Please provide a structured investigation narrative with these sections:
 
-1. **Executive Summary**: A 2-3 sentence overview stating whether this account requires immediate attention, the primary risk level, and the main concerns.
+### Executive Summary
+A 2-3 sentence overview stating whether this account requires immediate attention, the primary risk level, and the main concerns.
 
-2. **Pattern Analysis**: For each detected pattern, explain:
-   - What the pattern indicates
-   - How it deviates from normal behavior
-   - The specific evidence found
+### Pattern Analysis
+For each detected pattern, create a subsection with:
 
-3. **Risk Assessment**: An overall evaluation of the risk severity and likelihood of fraudulent activity.
+#### [Pattern Name] (Risk Score: X/100)
+* Indication: What the pattern indicates
+* Deviation: How it deviates from normal behavior
+* Evidence: The specific evidence found (with transaction counts/amounts)
 
-4. **Recommended Actions**: Specific, actionable steps the fraud investigation team should take, prioritized by urgency.
+Use one bullet point per line (start each with "* " on a new line).
+
+---
+
+### Risk Assessment
+An overall evaluation of the risk severity and likelihood of fraudulent activity.
+
+### Recommended Actions
+Specific, actionable steps the fraud investigation team should take, prioritized by urgency. Use bullet points:
+* Action 1
+* Action 2
+* Action 3
 
 **Important Guidelines:**
-- NEVER claim that fraud has definitively occurred - use language like "flagged for review," "suspicious activity," "requires investigation"
+- Use markdown formatting: ### for main sections, #### for subsections, * for bullets (one per line)
+- Separate sections with --- (horizontal rule)
+- NEVER claim fraud has definitively occurred - use "flagged for review," "suspicious activity," "requires investigation"
 - Be factual and evidence-based - reference specific transaction counts and amounts
-- Maintain a professional, objective tone suitable for a banking fraud report
-- Keep the narrative concise but thorough (approximately 300-500 words)
-- Focus on actionable insights for human investigators
+- Keep narrative concise but thorough (approximately 300-500 words)
+- Put each bullet point on its own line starting with "* "
 
 Generate the investigation narrative now:"""
 

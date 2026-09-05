@@ -187,6 +187,11 @@
             margin-bottom: 0.5rem;
             color: #4b5563;
         }
+        .narrative-content hr {
+            border: none;
+            border-top: 2px solid #e5e7eb;
+            margin: 1.5rem 0;
+        }
         .narrative-content p {
             margin-bottom: 1rem;
         }
@@ -272,9 +277,16 @@
         const API_BASE = 'http://localhost:8000';
         let profiles = [];
 
-        // Simple markdown renderer - supports all heading levels
+        // Enhanced markdown renderer - supports headings, bullets, bold, hr
         function renderMarkdown(text) {
             let html = text;
+            
+            // Fix inline bullets - convert "  *" to newline + "* " for proper list rendering
+            html = html.replace(/\s{2,}\*/g, '\n* ');
+            
+            // Horizontal rules (--- or ***)
+            html = html.replace(/^---$/gm, '<hr>');
+            html = html.replace(/^\*\*\*$/gm, '<hr>');
             
             // Headers - h1 through h6 (process from most to least hashes)
             html = html.replace(/^###### (.+)$/gm, '<h6>$1</h6>');
@@ -284,20 +296,25 @@
             html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
             html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
             
-            // Bold (**text**)
+            // Bold (**text**) - but not within words
             html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
             
-            // Bullet lists (* item or - item)
+            // Bullet lists (* item or - item) - must be at line start
             html = html.replace(/^[\*\-] (.+)$/gm, '<li>$1</li>');
-            html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
             
-            // Paragraphs (double newline)
+            // Wrap consecutive <li> elements in <ul>
+            html = html.replace(/(<li>[\s\S]*?<\/li>)(\n(?!<li>)|$)/gm, '<ul>$1</ul>$2');
+            
+            // Paragraphs (double newline) - but not for elements already wrapped
             html = html.split('\n\n').map(para => {
-                if (!para.trim().startsWith('<') && para.trim()) {
-                    return '<p>' + para.trim() + '</p>';
+                para = para.trim();
+                if (!para) return '';
+                if (para.startsWith('<h') || para.startsWith('<ul') || 
+                    para.startsWith('<hr') || para.startsWith('<p>')) {
+                    return para;
                 }
-                return para;
-            }).join('\n');
+                return '<p>' + para + '</p>';
+            }).filter(p => p).join('\n');
             
             return html;
         }
