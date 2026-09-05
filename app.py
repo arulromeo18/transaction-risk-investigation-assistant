@@ -3,7 +3,7 @@ Transaction Risk Investigation Assistant
 Main Flask application entry point
 """
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 import os
 import time
@@ -18,7 +18,7 @@ from src.models.customer import CustomerProfile, CustomerBaseline
 from src.models.transaction import TransactionRecord
 from src.gemini_integration import create_gemini_integration
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='frontend/dist', static_url_path='')
 CORS(app)
 
 # Initialize components
@@ -33,6 +33,11 @@ try:
 except Exception as e:
     print(f"Warning: Could not load profiles: {e}")
 
+@app.route('/')
+def serve_frontend():
+    """Serve the frontend application."""
+    return send_from_directory(app.static_folder, 'index.html')
+
 @app.route('/health', methods=['GET'])
 def health_check():
     """Health check endpoint to verify service is running."""
@@ -42,20 +47,6 @@ def health_check():
         'detectors_count': len(rule_engine.detectors),
         'profiles_loaded': len(profiles_cache),
         'gemini_enabled': gemini_integration is not None
-    }), 200
-
-@app.route('/', methods=['GET'])
-def index():
-    """Root endpoint."""
-    return jsonify({
-        'message': 'Transaction Risk Investigation Assistant API',
-        'version': '1.0.0',
-        'track_id': 'PS6',
-        'endpoints': {
-            'health': '/health',
-            'profiles': '/api/profiles',
-            'analyze': '/api/analyze'
-        }
     }), 200
 
 @app.route('/api/profiles', methods=['GET'])
