@@ -142,6 +142,22 @@
             color: #1f2937;
             line-height: 1.75;
         }
+        .narrative-content h1 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+        .narrative-content h1:first-child { margin-top: 0; }
+        .narrative-content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 1.75rem;
+            margin-bottom: 0.875rem;
+            color: #1f2937;
+        }
+        .narrative-content h2:first-child { margin-top: 0; }
         .narrative-content h3 {
             font-size: 1.25rem;
             font-weight: 600;
@@ -150,6 +166,27 @@
             color: #1f2937;
         }
         .narrative-content h3:first-child { margin-top: 0; }
+        .narrative-content h4 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+        .narrative-content h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+        .narrative-content h6 {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 0.75rem;
+            margin-bottom: 0.5rem;
+            color: #4b5563;
+        }
         .narrative-content p {
             margin-bottom: 1rem;
         }
@@ -235,12 +272,17 @@
         const API_BASE = 'http://localhost:8000';
         let profiles = [];
 
-        // Simple markdown renderer
+        // Simple markdown renderer - supports all heading levels
         function renderMarkdown(text) {
             let html = text;
             
-            // Headers (### Header)
+            // Headers - h1 through h6 (process from most to least hashes)
+            html = html.replace(/^###### (.+)$/gm, '<h6>$1</h6>');
+            html = html.replace(/^##### (.+)$/gm, '<h5>$1</h5>');
+            html = html.replace(/^#### (.+)$/gm, '<h4>$1</h4>');
             html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+            html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+            html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
             
             // Bold (**text**)
             html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
