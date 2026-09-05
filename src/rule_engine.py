@@ -1,4 +1,4 @@
-"""
+﻿"""
 Main rule engine for fraud detection.
 
 This module implements the RuleEngine class that orchestrates fraud detection
@@ -9,6 +9,12 @@ import time
 from typing import TYPE_CHECKING
 
 from src.models.detection import DetectionResult
+from src.detectors.large_transfer import LargeTransferDetector
+from src.detectors.burst_payment import BurstPaymentDetector
+from src.detectors.odd_hours import OddHoursDetector
+from src.detectors.pattern_break import PatternBreakDetector
+from src.detectors.structuring import StructuringDetector
+from src.detectors.velocity import VelocityDetector
 
 if TYPE_CHECKING:
     from src.detectors.base import FraudDetector
@@ -26,7 +32,7 @@ class RuleEngine:
     The engine aggregates results from all detectors, calculates an overall
     risk score, and tracks processing time for performance monitoring.
     
-    Validates: Requirements 2.8, 2.9
+    Validates: Requirements 2.1, 2.8, 2.9
     """
     
     def __init__(self):
@@ -43,37 +49,25 @@ class RuleEngine:
         """
         Register all fraud pattern detectors.
         
-        This method is called during initialization to set up the list of
-        detectors that will be used for fraud detection. Currently initialized
-        as empty - detectors will be added in subsequent tasks as they are
-        implemented.
+        This method initializes all available fraud pattern detectors:
+        - LargeTransferDetector: Detects transactions >= $5,000
+        - BurstPaymentDetector: Detects >= 5 transactions in 1 hour
+        - OddHoursDetector: Detects transactions between 11 PM and 6 AM
+        - PatternBreakDetector: Detects deviations from customer baseline
+        - StructuringDetector: Detects transactions just under $10k threshold
+        - VelocityDetector: Detects 2.5x+ acceleration in activity
         
-        Future detectors to be registered:
-        - LargeTransferDetector
-        - BurstPaymentDetector
-        - OddHoursDetector
-        - PatternBreakDetector
-        - StructuringDetector
-        - VelocityDetector
+        All detectors implement the FraudDetector interface and run
+        deterministically based on transaction data and rule definitions.
         """
-        # Detectors will be imported and registered here as they are implemented
-        # Example (to be uncommented when detectors are available):
-        # from src.detectors.large_transfer import LargeTransferDetector
-        # from src.detectors.burst_payment import BurstPaymentDetector
-        # from src.detectors.odd_hours import OddHoursDetector
-        # from src.detectors.pattern_break import PatternBreakDetector
-        # from src.detectors.structuring import StructuringDetector
-        # from src.detectors.velocity import VelocityDetector
-        #
-        # self.detectors = [
-        #     LargeTransferDetector(),
-        #     BurstPaymentDetector(),
-        #     OddHoursDetector(),
-        #     PatternBreakDetector(),
-        #     StructuringDetector(),
-        #     VelocityDetector()
-        # ]
-        pass
+        self.detectors = [
+            LargeTransferDetector(),
+            BurstPaymentDetector(),
+            OddHoursDetector(),
+            PatternBreakDetector(),
+            StructuringDetector(),
+            VelocityDetector()
+        ]
     
     def analyze(self, profile: 'CustomerProfile') -> DetectionResult:
         """
@@ -100,7 +94,7 @@ class RuleEngine:
             - investigation_narrative set to None (to be populated later
               by Gemini integration)
         
-        Validates: Requirements 2.8, 2.9
+        Validates: Requirements 2.1, 2.8, 2.9
         """
         start_time = time.time()
         
