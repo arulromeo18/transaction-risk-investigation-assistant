@@ -6,6 +6,7 @@ Main Flask application entry point
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import os
+import time
 from io import StringIO
 import pandas as pd
 from datetime import datetime
@@ -15,12 +16,14 @@ from src.rule_engine import RuleEngine
 from src.data_loader import load_profiles, get_profile_by_id
 from src.models.customer import CustomerProfile, CustomerBaseline
 from src.models.transaction import TransactionRecord
+from src.gemini_integration import create_gemini_integration
 
 app = Flask(__name__)
 CORS(app)
 
 # Initialize components
 rule_engine = RuleEngine()
+gemini_integration = create_gemini_integration()  # May be None if API key not set
 profiles_cache = []
 
 # Load profiles on startup
@@ -37,7 +40,8 @@ def health_check():
         'status': 'healthy',
         'service': 'Transaction Risk Investigation Assistant',
         'detectors_count': len(rule_engine.detectors),
-        'profiles_loaded': len(profiles_cache)
+        'profiles_loaded': len(profiles_cache),
+        'gemini_enabled': gemini_integration is not None
     }), 200
 
 @app.route('/', methods=['GET'])
@@ -89,6 +93,7 @@ def analyze_transactions():
         JSON with detection results and investigation narrative
     """
     try:
+        start_time = time.time()
         data = request.get_json()
         
         if not data:
@@ -109,7 +114,19 @@ def analyze_transactions():
         # Run rule engine
         detection_result = rule_engine.analyze(profile)
         
-        # TODO: Add Gemini narrative generation in next phase
+        # Generate narrative if Gemini is available and patterns detected
+        elapsed = time.time() - start_time
+        time_remaining = 60 - elapsed  # 60 second total budget
+        
+        if gemini_integration and detection_result.detected_patterns and time_remaining > 15:
+            # Only attempt narrative generation if we have time
+            try:
+                narrative = gemini_integration.generate_narrative_sync(detection_result, profile)
+                detection_result.investigation_narrative = narrative
+            except Exception as e:
+                # Log but don't fail - return results without narrative
+                print(f"Narrative generation failed: {e}")
+                detection_result.investigation_narrative = None
         
         return jsonify(detection_result.to_dict()), 200
         
@@ -194,5 +211,6 @@ if __name__ == '__main__':
     print("Starting Transaction Risk Investigation Assistant...")
     print(f"Loaded {len(rule_engine.detectors)} fraud detectors")
     print(f"Loaded {len(profiles_cache)} customer profiles")
+    print(f"Gemini Integration: {'Enabled' if gemini_integration else 'Disabled (no API key)'}")
     print("Server listening on http://localhost:8000")
     app.run(host='0.0.0.0', port=8000, debug=False)
