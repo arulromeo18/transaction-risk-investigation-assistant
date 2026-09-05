@@ -1,0 +1,9 @@
+﻿transaction_id,customer_id,amount,timestamp,merchant,transaction_type,category,location
+TXN001,CSV_TEST,45.99,2026-09-01T10:30:00,Starbucks,purchase,restaurants,Local
+TXN002,CSV_TEST,125.50,2026-09-01T14:22:00,Whole Foods,purchase,groceries,Local
+TXN003,CSV_TEST,89.75,2026-09-02T09:15:00,Shell,purchase,gas,Local
+TXN004,CSV_TEST,1250.00,2026-09-02T23:45:00,Unknown Vendor,purchase,online,Unknown
+TXN005,CSV_TEST,1450.00,2026-09-02T23:52:00,Suspicious LLC,purchase,online,International
+TXN006,CSV_TEST,1680.00,2026-09-02T23:58:00,Cash Advance,cash_advance,cash,ATM
+TXN007,CSV_TEST,225.00,2026-09-03T11:30:00,Target,purchase,retail,Local
+TXN008,CSV_TEST,67.80,2026-09-03T18:45:00,Chipotle,purchase,restaurants,Local

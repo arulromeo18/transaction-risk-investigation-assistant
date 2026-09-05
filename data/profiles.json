@@ -1773,6 +1773,317 @@
           12
         ]
       }
+    },
+    {
+      "customer_id": "C006",
+      "name": "Frank Chen",
+      "transactions": [
+        {
+          "transaction_id": "C006-000",
+          "customer_id": "C006",
+          "amount": "85.42",
+          "timestamp": "2026-07-05T23:00:00",
+          "merchant": "Safeway",
+          "transaction_type": "purchase",
+          "category": "groceries",
+          "location": "Local"
+        },
+        {
+          "transaction_id": "C006-001",
+          "customer_id": "C006",
+          "amount": "42.15",
+          "timestamp": "2026-07-07T17:00:00",
+          "merchant": "Shell",
+          "transaction_type": "purchase",
+          "category": "gas",
+          "location": "Local"
+        },
+        {
+          "transaction_id": "C006-002",
+          "customer_id": "C006",
+          "amount": "156.78",
+          "timestamp": "2026-07-11T01:00:00",
+          "merchant": "Target",
+          "transaction_type": "purchase",
+          "category": "retail",
+          "location": "Local"
+        },
+        {
+          "transaction_id": "C006-003",
+          "customer_id": "C006",
+          "amount": "38.9",
+          "timestamp": "2026-07-12T18:00:00",
+          "merchant": "Starbucks",
+          "transaction_type": "purchase",
+          "category": "restaurants",
+          "location": "Local"
+        },
+        {
+          "transaction_id": "C006-004",
+          "customer_id": "C006",
+          "amount": "92.34",
+          "timestamp": "2026-07-16T02:00:00",
+          "merchant": "Whole Foods",
+          "transaction_type": "purchase",
+          "category": "groceries",
+          "location": "Local"
+        },
+        {
+          "transaction_id": "C006-005",
+          "customer_id": "C006",
+          "amount": "67.23",
+          "timestamp": "2026-07-17T16:00:00",
+          "merchant": "Chevron",
+          "transaction_type": "purchase",
+          "category": "gas",
+          "location": "Local"
+        },
+        {
+          "transaction_id": "C006-006",
+          "customer_id": "C006",
+          "amount": "124.56",
+          "timestamp": "2026-07-19T20:00:00",
+          "merchant": "Home Depot",
+          "transaction_type": "purchase",
+          "category": "retail",
+          "location": "Local"
+        },
+        {
+          "transaction_id": "C006-007",
+          "customer_id": "C006",
+          "amount": "45.67",
+          "timestamp": "2026-07-22T03:00:00",
+          "merchant": "Chipotle",
+          "transaction_type": "purchase",
+          "category": "restaurants",
+          "location": "Local"
+        },
+        {
+          "transaction_id": "C006-008",
+          "customer_id": "C006",
+          "amount": "78.9",
+          "timestamp": "2026-07-24T00:00:00",
+          "merchant": "Kroger",
+          "transaction_type": "purchase",
+          "category": "groceries",
+          "location": "Local"
+        },
+        {
+          "transaction_id": "C006-009",
+          "customer_id": "C006",
+          "amount": "198.45",
+          "timestamp": "2026-07-25T22:00:00",
+          "merchant": "Best Buy",
+          "transaction_type": "purchase",
+          "category": "retail",
+          "location": "Local"
+        },
+        {
+          "transaction_id": "C006-CT00",
+          "customer_id": "C006",
+          "amount": "0.5",
+          "timestamp": "2026-08-19T11:15:00",
+          "merchant": "Online Vendor A",
+          "transaction_type": "purchase",
+          "category": "online",
+          "location": "Online"
+        },
+        {
+          "transaction_id": "C006-CT01",
+          "customer_id": "C006",
+          "amount": "0.75",
+          "timestamp": "2026-08-19T11:18:00",
+          "merchant": "Online Vendor B",
+          "transaction_type": "purchase",
+          "category": "online",
+          "location": "Online"
+        },
+        {
+          "transaction_id": "C006-CT02",
+          "customer_id": "C006",
+          "amount": "1.0",
+          "timestamp": "2026-08-19T11:21:00",
+          "merchant": "Online Vendor C",
+          "transaction_type": "purchase",
+          "category": "online",
+          "location": "Online"
+        },
+        {
+          "transaction_id": "C006-CT03",
+          "customer_id": "C006",
+          "amount": "1.25",
+          "timestamp": "2026-08-19T11:24:00",
+          "merchant": "Online Vendor D",
+          "transaction_type": "purchase",
+          "category": "online",
+          "location": "Online"
+        },
+        {
+          "transaction_id": "C006-CT04",
+          "customer_id": "C006",
+          "amount": "1.5",
+          "timestamp": "2026-08-19T11:27:00",
+          "merchant": "Online Vendor E",
+          "transaction_type": "purchase",
+          "category": "online",
+          "location": "Online"
+        },
+        {
+          "transaction_id": "C006-CT05",
+          "customer_id": "C006",
+          "amount": "1.75",
+          "timestamp": "2026-08-19T11:30:00",
+          "merchant": "Online Vendor F",
+          "transaction_type": "purchase",
+          "category": "online",
+          "location": "Online"
+        },
+        {
+          "transaction_id": "C006-CT06",
+          "customer_id": "C006",
+          "amount": "2.0",
+          "timestamp": "2026-08-19T11:33:00",
+          "merchant": "Online Vendor G",
+          "transaction_type": "purchase",
+          "category": "online",
+          "location": "Online"
+        },
+        {
+          "transaction_id": "C006-CT07",
+          "customer_id": "C006",
+          "amount": "2.25",
+          "timestamp": "2026-08-19T11:36:00",
+          "merchant": "Online Vendor H",
+          "transaction_type": "purchase",
+          "category": "online",
+          "location": "Online"
+        },
+        {
+          "transaction_id": "C006-GEO00",
+          "customer_id": "C006",
+          "amount": "1850.0",
+          "timestamp": "2026-08-21T17:00:00",
+          "merchant": "Bangkok Electronics",
+          "transaction_type": "purchase",
+          "category": "retail",
+          "location": "Thailand"
+        },
+        {
+          "transaction_id": "C006-GEO01",
+          "customer_id": "C006",
+          "amount": "2340.5",
+          "timestamp": "2026-08-21T17:45:00",
+          "merchant": "Thai Jewelry Store",
+          "transaction_type": "purchase",
+          "category": "retail",
+          "location": "Thailand"
+        },
+        {
+          "transaction_id": "C006-GEO02",
+          "customer_id": "C006",
+          "amount": "1675.25",
+          "timestamp": "2026-08-21T19:00:00",
+          "merchant": "International Vendor",
+          "transaction_type": "purchase",
+          "category": "retail",
+          "location": "Thailand"
+        },
+        {
+          "transaction_id": "C006-ST00",
+          "customer_id": "C006",
+          "amount": "9800",
+          "timestamp": "2026-08-24T19:00:00",
+          "merchant": "Cash Deposit",
+          "transaction_type": "deposit",
+          "category": "banking",
+          "location": "Bank Branch"
+        },
+        {
+          "transaction_id": "C006-ST01",
+          "customer_id": "C006",
+          "amount": "9850",
+          "timestamp": "2026-08-25T21:00:00",
+          "merchant": "Cash Deposit",
+          "transaction_type": "deposit",
+          "category": "banking",
+          "location": "Bank Branch"
+        },
+        {
+          "transaction_id": "C006-ST02",
+          "customer_id": "C006",
+          "amount": "9900",
+          "timestamp": "2026-08-26T23:00:00",
+          "merchant": "Cash Deposit",
+          "transaction_type": "deposit",
+          "category": "banking",
+          "location": "Bank Branch"
+        },
+        {
+          "transaction_id": "C006-ST03",
+          "customer_id": "C006",
+          "amount": "9950",
+          "timestamp": "2026-08-28T01:00:00",
+          "merchant": "Cash Deposit",
+          "transaction_type": "deposit",
+          "category": "banking",
+          "location": "Bank Branch"
+        },
+        {
+          "transaction_id": "C006-HR00",
+          "customer_id": "C006",
+          "amount": "2500.0",
+          "timestamp": "2026-08-30T07:00:00",
+          "merchant": "Crypto Exchange",
+          "transaction_type": "purchase",
+          "category": "crypto",
+          "location": "Online"
+        },
+        {
+          "transaction_id": "C006-HR01",
+          "customer_id": "C006",
+          "amount": "1800.0",
+          "timestamp": "2026-08-30T13:00:00",
+          "merchant": "Online Casino",
+          "transaction_type": "purchase",
+          "category": "gambling",
+          "location": "Online"
+        },
+        {
+          "transaction_id": "C006-HR02",
+          "customer_id": "C006",
+          "amount": "3200.0",
+          "timestamp": "2026-08-30T19:00:00",
+          "merchant": "Bitcoin ATM",
+          "transaction_type": "purchase",
+          "category": "crypto",
+          "location": "Online"
+        }
+      ],
+      "baseline_stats": {
+        "avg_transaction_amount": "93.04",
+        "median_transaction_amount": "85.42",
+        "avg_daily_transaction_count": 0.5,
+        "common_merchants": [
+          "Safeway",
+          "Target",
+          "Whole Foods",
+          "Shell",
+          "Home Depot"
+        ],
+        "common_transaction_types": [
+          "purchase"
+        ],
+        "typical_hours": [
+          14,
+          16,
+          9,
+          17,
+          11,
+          13,
+          15,
+          18
+        ]
+      }
     }
   ],
   "generated_at": "2024-01-15T10:00:00"

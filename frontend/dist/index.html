@@ -1,14 +1,382 @@
-﻿<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transaction Risk Investigation Assistant</title>
-    <script type="module" crossorigin src="/assets/index-kYNFyddW.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Cn5i7mJD.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1e293b 0%, #1e40af 50%, #1e293b 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .header { text-align: center; margin-bottom: 3rem; }
+        .header h1 { font-size: 3rem; font-weight: bold; margin-bottom: 1rem; }
+        .header p { font-size: 1.25rem; color: #bfdbfe; }
+        .track-id { font-size: 0.875rem; color: #93c5fd; margin-top: 0.5rem; }
+        .card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+        .controls { display: flex; gap: 1rem; align-items: flex-end; }
+        .form-group { flex: 1; }
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        select, button {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db;
+        }
+        select { background: white; }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover { background: #1d4ed8; }
+        button:disabled { background: #d1d5db; cursor: not-allowed; }
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #1f2937;
+        }
+        .results-header h2 { font-size: 2rem; font-weight: bold; }
+        .risk-score {
+            text-align: center;
+            font-size: 4rem;
+            font-weight: bold;
+        }
+        .risk-high { color: #dc2626; }
+        .risk-medium { color: #f59e0b; }
+        .risk-low { color: #16a34a; }
+        .risk-label { font-size: 0.875rem; color: #6b7280; margin-top: 0.5rem; }
+        .patterns-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+        }
+        .pattern-card {
+            border-left: 4px solid;
+            padding: 1.5rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            margin-bottom: 1rem;
+        }
+        .pattern-high { background: #fee2e2; border-color: #dc2626; }
+        .pattern-medium { background: #fef3c7; border-color: #f59e0b; }
+        .pattern-low { background: #dcfce7; border-color: #16a34a; }
+        .pattern-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+        }
+        .pattern-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+        .pattern-desc { color: #374151; margin-bottom: 1rem; }
+        .pattern-details {
+            font-size: 0.875rem;
+            color: #4b5563;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+        }
+        .pattern-risk {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: right;
+        }
+        .narrative-card {
+            background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+            border: 2px solid #3b82f6;
+            border-radius: 0.75rem;
+            padding: 2rem;
+        }
+        .narrative-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .narrative-icon {
+            width: 3.5rem;
+            height: 3.5rem;
+            background: #2563eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+        .narrative-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+        .narrative-subtitle { font-size: 0.875rem; color: #6b7280; }
+        .narrative-content {
+            color: #1f2937;
+            line-height: 1.75;
+            white-space: pre-wrap;
+        }
+        .loading {
+            text-align: center;
+            padding: 3rem;
+        }
+        .spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #2563eb;
+            border-radius: 50%;
+            width: 4rem;
+            height: 4rem;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .error {
+            background: #fef2f2;
+            border-left: 4px solid #dc2626;
+            color: #991b1b;
+            padding: 1.5rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            margin-bottom: 2rem;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #6b7280;
+        }
+        .empty-icon {
+            font-size: 6rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Transaction Risk Investigation Assistant</h1>
+            <p>AI-Powered Fraud Detection & Analysis</p>
+            <div class="track-id">TRACK_ID: PS6</div>
+        </div>
+
+        <div class="card">
+            <div class="controls">
+                <div class="form-group">
+                    <label>Select Customer Profile</label>
+                    <select id="profileSelect">
+                        <option value="">-- Choose a customer --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button id="analyzeBtn" disabled>Analyze Transactions</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading" style="display:none;" class="card">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p style="color:#1f2937;font-size:1.125rem;">Analyzing transaction patterns...</p>
+            </div>
+        </div>
+
+        <div id="error" style="display:none;"></div>
+        <div id="results" style="display:none;"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+        let profiles = [];
+
+        // Load profiles on page load
+        async function loadProfiles() {
+            try {
+                const response = await fetch(`${API_BASE}/api/profiles`);
+                const data = await response.json();
+                profiles = data.profiles;
+                
+                const select = document.getElementById('profileSelect');
+                profiles.forEach(p => {
+                    const option = document.createElement('option');
+                    option.value = p.customer_id;
+                    option.textContent = `${p.customer_id}: ${p.name} (${p.transaction_count} transactions)`;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                showError('Failed to load profiles: ' + error.message);
+            }
+        }
+
+        // Enable/disable analyze button
+        document.getElementById('profileSelect').addEventListener('change', (e) => {
+            document.getElementById('analyzeBtn').disabled = !e.target.value;
+        });
+
+        // Analyze transactions
+        document.getElementById('analyzeBtn').addEventListener('click', async () => {
+            const customerId = document.getElementById('profileSelect').value;
+            if (!customerId) return;
+
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('results').style.display = 'none';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/analyze`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ customer_id: customerId })
+                });
+                
+                const result = await response.json();
+                displayResults(result);
+            } catch (error) {
+                showError('Analysis failed: ' + error.message);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        });
+
+        function showError(message) {
+            document.getElementById('error').innerHTML = `<div class="error"><strong>Error:</strong> ${message}</div>`;
+            document.getElementById('error').style.display = 'block';
+        }
+
+        function getRiskClass(score) {
+            if (score >= 80) return 'risk-high';
+            if (score >= 60) return 'risk-medium';
+            return 'risk-low';
+        }
+
+        function getPatternClass(score) {
+            if (score >= 80) return 'pattern-high';
+            if (score >= 60) return 'pattern-medium';
+            return 'pattern-low';
+        }
+
+        function displayResults(result) {
+            const riskClass = getRiskClass(result.overall_risk_score);
+            const riskLabel = result.overall_risk_score >= 80 ? 'HIGH RISK' : 
+                             result.overall_risk_score >= 60 ? 'MEDIUM RISK' : 'LOW RISK';
+
+            let html = `
+                <div class="card">
+                    <div class="results-header">
+                        <div>
+                            <h2>Analysis Results</h2>
+                            <p style="color:#6b7280;">Customer: ${result.customer_id}</p>
+                            <p style="color:#9ca3af;font-size:0.875rem;margin-top:0.25rem;">
+                                Processing Time: ${result.processing_time_ms}ms
+                            </p>
+                        </div>
+                        <div>
+                            <div class="risk-score ${riskClass}">${result.overall_risk_score}</div>
+                            <div class="risk-label">Overall Risk Score</div>
+                            <div style="font-size:0.75rem;color:#6b7280;margin-top:0.25rem;">${riskLabel}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="patterns-title">
+                        Detected Fraud Patterns (${result.detected_patterns.length})
+                    </div>
+            `;
+
+            if (result.detected_patterns.length === 0) {
+                html += `
+                    <div class="empty-state">
+                        <div class="empty-icon">âœ“</div>
+                        <h3 style="font-size:1.5rem;color:#1f2937;margin-bottom:0.5rem;">No Fraud Patterns Detected</h3>
+                        <p>This account appears to have normal transaction activity.</p>
+                    </div>
+                `;
+            } else {
+                result.detected_patterns.forEach(pattern => {
+                    const patternClass = getPatternClass(pattern.risk_score);
+                    const riskColor = getRiskClass(pattern.risk_score);
+                    
+                    html += `
+                        <div class="pattern-card ${patternClass}">
+                            <div class="pattern-header">
+                                <div style="flex:1;">
+                                    <div class="pattern-name">${pattern.pattern_name}</div>
+                                    <div class="pattern-desc">${pattern.description}</div>
+                                    <div class="pattern-details">
+                                        <p><strong>Triggered Transactions:</strong> ${pattern.triggered_transactions.length}</p>
+                    `;
+                    
+                    Object.entries(pattern.details).forEach(([key, value]) => {
+                        html += `<p><strong>${key.replace(/_/g, ' ')}:</strong> ${value}</p>`;
+                    });
+                    
+                    html += `
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="pattern-risk ${riskColor}">${pattern.risk_score}</div>
+                                    <div style="font-size:0.75rem;color:#6b7280;text-align:right;">Risk Score</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            html += '</div>';
+
+            if (result.investigation_narrative) {
+                html += `
+                    <div class="narrative-card">
+                        <div class="narrative-header">
+                            <div class="narrative-icon">ðŸ¤–</div>
+                            <div>
+                                <div class="narrative-title">AI Investigation Narrative</div>
+                                <div class="narrative-subtitle">Generated by Gemini AI</div>
+                            </div>
+                        </div>
+                        <div class="narrative-content">${result.investigation_narrative}</div>
+                    </div>
+                `;
+            } else if (result.detected_patterns.length > 0) {
+                html += `
+                    <div class="card" style="background:#fef3c7;border-left:4px solid #f59e0b;">
+                        <p style="color:#92400e;">
+                            <strong>Note:</strong> AI narrative not available. 
+                            Set GEMINI_API_KEY environment variable to enable narrative generation.
+                        </p>
+                    </div>
+                `;
+            }
+
+            document.getElementById('results').innerHTML = html;
+            document.getElementById('results').style.display = 'block';
+        }
+
+        // Initialize
+        loadProfiles();
+    </script>
+</body>
 </html>

@@ -109,7 +109,11 @@ def analyze_transactions():
         elapsed = time.time() - start_time
         time_remaining = 60 - elapsed  # 60 second total budget
         
+        print(f"DEBUG: gemini_integration={gemini_integration is not None}")
+        print(f"DEBUG: detected_patterns={len(detection_result.detected_patterns)}")
+        print(f"DEBUG: time_remaining={time_remaining}")
         if gemini_integration and detection_result.detected_patterns and time_remaining > 15:
+            print("DEBUG: Attempting to generate narrative...")
             # Only attempt narrative generation if we have time
             try:
                 narrative = gemini_integration.generate_narrative_sync(detection_result, profile)
@@ -205,3 +209,4 @@ if __name__ == '__main__':
     print(f"Gemini Integration: {'Enabled' if gemini_integration else 'Disabled (no API key)'}")
     print("Server listening on http://localhost:8000")
     app.run(host='0.0.0.0', port=8000, debug=False)
+

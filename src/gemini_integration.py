@@ -30,7 +30,7 @@ class GeminiIntegration:
     """
     
     NARRATIVE_TIMEOUT_SECONDS = 45  # Leave 15s buffer for other processing
-    MODEL_NAME = "gemini-1.5-flash"
+    MODEL_NAME = "gemini-3.6-flash"
     
     def __init__(self, api_key: Optional[str] = None):
         """
@@ -248,3 +248,4 @@ def create_gemini_integration() -> Optional[GeminiIntegration]:
     except ValueError as e:
         print(f"Gemini integration disabled: {e}")
         return None
+
